@@ -137,7 +137,7 @@ class Game(commands.Cog):
                 # except asyncio.TimeoutError:
                 if not valid_word:
                     player_lives[players[i]] -= 1
-                    message_embed.description = f'{players[i].mention} ran out of time!\nLives left:{':heart:'*player_lives[players[i]] + ':broken_heart:'*(3-player_lives[players[i]])}'
+                    message_embed.description = f"{players[i].mention} ran out of time!\nLives left:{':heart:'*player_lives[players[i]] + ':broken_heart:'*(3-player_lives[players[i]])}"
                     # if player is out of lives, remove them from the game
                     if player_lives[players[i]] == 0:
                             message_embed.description = f'{players[i].mention} is out of lives!'
