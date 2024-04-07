@@ -46,7 +46,7 @@ class Game(commands.Cog):
         # send the message
         await interaction.followup.send(embed=message_embed)
         msg = await interaction.original_response()
-        await msg.add_reaction("✅")
+        await msg.add_reaction(":white_check_mark:")
         
         # wait 3 seconds
         for i in range(3):
@@ -107,7 +107,7 @@ class Game(commands.Cog):
                         if time_passed != last_time_passed:
                             if time_passed >= 5:
                                 break
-                            message_embed.description = f'{players[i].mention} write a word that contains: {generated_string}\nWaiting {5-time_passed} seconds...\n{"☕"*(5-time_passed)}'
+                            message_embed.description = f'{players[i].mention} write a word that contains: {generated_string}\nWaiting {5-time_passed} seconds...\n{":coffee:"*(5-time_passed)}'
                             await msg.edit(embed=message_embed)
                             last_time_passed = time_passed
                     
@@ -117,7 +117,7 @@ class Game(commands.Cog):
                 try:
                     # task = asyncio.create_task(edit_timer(msg))
                     response = await self.bot.wait_for('message', check=check, timeout=5)
-                    await response.add_reaction("✅") 
+                    await response.add_reaction(":white_check_mark:") 
                     # task.cancel()
                     valid_word = True
                 except asyncio.TimeoutError:
@@ -130,14 +130,14 @@ class Game(commands.Cog):
                 #         return (m.author == players[i]) and (generated_string in m.content.upper()) and (check_word(m.content))
                 #     response = await self.bot.wait_for('message', check=check, timeout=5)
                 #     # react to the message
-                #     await response.add_reaction("✅") 
+                #     await response.add_reaction(":white_check_mark:") 
                     
                 # player was unable to respond with a valid word in time
                 # subtract a life
                 # except asyncio.TimeoutError:
                 if not valid_word:
                     player_lives[players[i]] -= 1
-                    message_embed.description = f'{players[i].mention} ran out of time!\nLives left:{'❤️'*player_lives[players[i]] + '💔'*(3-player_lives[players[i]])}'
+                    message_embed.description = f'{players[i].mention} ran out of time!\nLives left:{':heart:'*player_lives[players[i]] + ':broken_heart:'*(3-player_lives[players[i]])}'
                     # if player is out of lives, remove them from the game
                     if player_lives[players[i]] == 0:
                             message_embed.description = f'{players[i].mention} is out of lives!'
